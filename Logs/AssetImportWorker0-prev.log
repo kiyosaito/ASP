@@ -109,3 +109,32 @@ Received Import Request.
 Start importing Assets/Martin's Systems/Scenes/Testing area.unity using Guid(60894b983e801c04fb4e7c934b7db896) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8b22338f5300afafe77db2e471f942a7') in 0.012841 seconds
   Import took 0.016868 seconds .
 
+========================================================================
+Received Import Request.
+  Time since last request: 331.935754 seconds.
+  path: Assets/Martin's Systems/Test.cs
+  artifactKey: Guid(1fa19082d3b47a04aaaff975b1ba6f47) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Martin's Systems/Test.cs using Guid(1fa19082d3b47a04aaaff975b1ba6f47) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0a022fd6bb61dd1c597596e0b23191fd') in 0.076200 seconds
+  Import took 0.080040 seconds .
+
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.003479 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Native extension for OSXStandalone target not found
+Refreshing native plugins compatible for Editor in 0.45 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  1.392 seconds
+Platform modules already initialized, skipping
+Refreshing native plugins compatible for Editor in 0.54 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 2076 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 92.8 MB.
+System memory in use after: 92.7 MB.
+
+Unloading 21 unused Assets to reduce memory usage. Loaded Objects now: 2518.
+Total: 2.238300 ms (FindLiveObjects: 0.132100 ms CreateObjectMapping: 0.041600 ms MarkObjects: 1.886500 ms  DeleteObjects: 0.176800 ms)
+
