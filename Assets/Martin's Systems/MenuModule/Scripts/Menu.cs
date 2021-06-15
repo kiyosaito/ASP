@@ -7,18 +7,12 @@ using TMPro;
 
 public class Menu : MonoBehaviour
 {
-    #region Variables
-
-    //private TMPro.TMP_Dropdown screenModedropdown;
-    private FullScreenMode[] screenMode = new FullScreenMode[3];
-
-    #endregion
-
     #region Monobehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        Gameobjectstarting();
+        GetResolutions();
     }
 
     // Update is called once per frame
@@ -26,6 +20,33 @@ public class Menu : MonoBehaviour
     {
         
     }
+    #endregion
+
+    #region Menu start up
+    [Header("Starting objects")]
+    [SerializeField]
+    private GameObject mainMenu;
+    [SerializeField]
+    private GameObject settingsMenu;
+    [SerializeField]
+    private GameObject settingsContent;
+    [SerializeField]
+    private GameObject graphics;
+    [SerializeField]
+    private GameObject Audio;
+    [SerializeField]
+    private GameObject Controls;
+
+    private void Gameobjectstarting()
+    {
+        mainMenu.SetActive(true);
+        settingsMenu.SetActive(false);
+        settingsContent.SetActive(true);
+        graphics.SetActive(false);
+        Audio.SetActive(false);
+        Controls.SetActive(false);
+    }
+
     #endregion
 
     #region Play
@@ -40,15 +61,80 @@ public class Menu : MonoBehaviour
 
     #region Graphics
 
-    public void SetQuality(int qualityIndex)
+    #region Aspect Ratio
+
+    [Header("Graphics")]
+    [SerializeField]
+    private TMP_Dropdown aspectRatioDropdown;
+
+    #endregion
+    #region Resolution
+    [SerializeField]
+    private TMP_Dropdown resolutionDropdown;
+    private Resolution[] resolutions;
+
+    private void GetResolutions()
     {
-        QualitySettings.SetQualityLevel(qualityIndex);
+        resolutions = Screen.resolutions;
+        resolutionDropdown.ClearOptions();
+        List<string> options = new List<string>();
+        int currentResIdx = 0;
+        for (int i = 0; i < resolutions.Length; i++)
+        {
+            string option = resolutions[i].width + " x " + resolutions[i].height;
+            options.Add(option);
+            if (resolutions[i].width == Screen.currentResolution.width && resolutions[i].height == Screen.currentResolution.height)
+            {
+                currentResIdx = 1;
+            }
+        }
+        resolutionDropdown.AddOptions(options);
+        resolutionDropdown.value = currentResIdx;
+        resolutionDropdown.RefreshShownValue();
     }
 
-    public void SetWindowMode(int windowModeIndex)
+    public void setResolution(int resIdx)
     {
-        Screen.fullScreenMode = screenMode[windowModeIndex];
+        Resolution resolution = resolutions[resIdx];
+        Screen.SetResolution(resolution.width, resolution.height,screenMode);
     }
+
+    #endregion
+
+    #region Quality
+
+    [SerializeField]
+    private TMP_Dropdown qualityLevelDropdown;
+
+    public void SetQuality(int idx)
+    {
+        qualityLevelDropdown.value = idx;
+        QualitySettings.SetQualityLevel(qualityLevelDropdown.value);
+    }
+
+    #endregion
+
+    #region Screen Mode
+
+    [SerializeField]
+    private TMP_Dropdown screenModeDropdown;
+    [SerializeField]
+    private FullScreenMode[] screenModeArray = new FullScreenMode[3];
+    private FullScreenMode screenMode;
+
+    public void SetWindowMode(int idx)
+    {
+        screenModeDropdown.value = idx;
+        screenMode = screenModeArray[screenModeDropdown.value];
+        Screen.fullScreenMode = screenMode;
+    }
+
+    public FullScreenMode getScreenMode()
+    {
+        return screenMode;
+    }
+
+    #endregion
 
     #endregion
 
