@@ -23,4 +23,23 @@ public class Enemy : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Bullet"))
+        {
+            Destroy(other.gameObject);
+            Destroy(gameObject);
+        }
+        else if (other.CompareTag("Player"))
+        {
+            Player player = other.gameObject.GetComponent<Player>();
+
+            if (player != null)
+            {
+                player.Damage(1);
+            }
+            Destroy(gameObject);
+        }
+    }
 }

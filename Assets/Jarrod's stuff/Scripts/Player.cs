@@ -21,6 +21,8 @@ public class Player : MonoBehaviour
     [SerializeField]
     private GameObject _prefabBullet;
 
+    private int _health = 3;
+
 
     // Start is called before the first frame update
     void Start()
@@ -75,6 +77,16 @@ public class Player : MonoBehaviour
         {
             _spriteRenderer.color = Color.white;
             playerState = PlayerColour.White;
+        }
+    }
+
+    public void Damage(int damage)
+    {
+        _health -= damage;
+
+        if (_health < 1)
+        {
+            Destroy(gameObject);
         }
     }
 }
