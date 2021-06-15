@@ -13,43 +13,45 @@ public class SpawnManager : MonoBehaviour
 
     [SerializeField]
     private GameObject _enemyContainer;
+
+
     [SerializeField]
     private float _spawnRate;
-    private enum SpawnType
-    {
-        Single,
-        V,
-        Line,
-    }
-
 
     void Start()
     {
-        StartCoroutine(SelectEnemy());
+        
+        GameObject[] _enemyList = new GameObject[3];
+        _enemyList[0] = _prefabEnemy;
+        _enemyList[1] = _prefabVGroup;
+        _enemyList[2] = _prefabLineGroup;
+
+        //Weights must add up to 100
+        int[] _enemyWeightList = new int[3];
+        _enemyWeightList[0] = 80;
+        _enemyWeightList[1] = 10;
+        _enemyWeightList[2] = 10;
+
+        StartCoroutine(RandomEnemy(_enemyList, _enemyWeightList));
     }
 
-    //Spawns a single enemy 80% of the time, something else 20%
-    private IEnumerator SelectEnemy()
+    private IEnumerator RandomEnemy(GameObject[] enemyList, int[] weightList)
     {
         while (true)
         {
-            switch (Random.Range(0, 5))
+            for (int i = 1; i < weightList.Length; i++)
             {
-                case 0:
-                    SpawnSingle();
+                weightList[i] = weightList[i - 1] + weightList[i];
+            }
+
+            int r = Random.Range(1, 101);
+            for (int i = 0; i < weightList.Length; i++)
+            {
+                if (r <= weightList[i])
+                {
+                    Spawner(enemyList[i]);
                     break;
-                case 1:
-                    SpawnSingle();
-                    break;
-                case 2:
-                    SpawnSingle();
-                    break;
-                case 3:
-                    SpawnSingle();
-                    break;
-                case 4:
-                    SpawnGroup(Random.Range(1, System.Enum.GetNames(typeof(SpawnType)).Length));
-                    break;
+                }
             }
             yield return new WaitForSeconds(_spawnRate);
         }
@@ -59,29 +61,6 @@ public class SpawnManager : MonoBehaviour
     {
         GameObject newEnemy = Instantiate(enemyToSpawn, new Vector3(Random.Range(-8f, 8f), 6f), Quaternion.identity);
         newEnemy.transform.parent = _enemyContainer.transform;
-    }
-
-    private void SpawnSingle()
-    {
-        Spawner(_prefabEnemy);
-    }
-
-    private void SpawnGroup(int i)
-    {
-        switch (i)
-        {
-            case 1:
-                Spawner(_prefabVGroup);
-                Debug.Log("Spawning V Group");
-                break;
-            case 2:
-                Spawner(_prefabLineGroup);
-                Debug.Log("Spawning Line Group");
-                break;
-            default:
-                Debug.Log("Spawning nothing");
-                break;
-        }
     }
 
 }
