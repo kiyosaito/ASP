@@ -66,8 +66,19 @@ public class Menu : MonoBehaviour
     [Header("Graphics")]
     [SerializeField]
     private TMP_Dropdown aspectRatioDropdown;
+    private float[] aspectRatios = new float[3];
 
+    private void setupAspectRatio()
+    {
+        aspectRatioDropdown.ClearOptions();
+        aspectRatios[0] = 4 / 3;
+        aspectRatios[1] = 16 / 9;
+        aspectRatios[2] = 16 / 10;
+        List<string> options = new List<string>();
+
+    }
     #endregion
+
     #region Resolution
     [SerializeField]
     private TMP_Dropdown resolutionDropdown;
