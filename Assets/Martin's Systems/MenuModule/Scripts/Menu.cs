@@ -1,9 +1,7 @@
-using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.Audio;
-using TMPro;
 
 public class Menu : MonoBehaviour
 {
@@ -18,7 +16,7 @@ public class Menu : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
     #endregion
 
@@ -67,15 +65,28 @@ public class Menu : MonoBehaviour
     [SerializeField]
     private TMP_Dropdown aspectRatioDropdown;
     private float[] aspectRatios = new float[3];
+    private float aspectRatio;
 
-    private void setupAspectRatio()
+    private void SetupAspectRatio()
     {
         aspectRatioDropdown.ClearOptions();
         aspectRatios[0] = 4 / 3;
         aspectRatios[1] = 16 / 9;
         aspectRatios[2] = 16 / 10;
         List<string> options = new List<string>();
-
+        int curASI =0 ;
+        for (int i = 0; i < 3; i++)
+        {
+            string option = aspectRatios[i].ToString();
+            options.Add(option);
+            if (aspectRatios[i] == aspectRatio)
+            {
+                curASI = 1;
+            }
+        }
+        aspectRatioDropdown.AddOptions(options);
+        aspectRatioDropdown.value = curASI;
+        aspectRatioDropdown.RefreshShownValue();
     }
     #endregion
 
@@ -92,11 +103,15 @@ public class Menu : MonoBehaviour
         int currentResIdx = 0;
         for (int i = 0; i < resolutions.Length; i++)
         {
-            string option = resolutions[i].width + " x " + resolutions[i].height;
-            options.Add(option);
-            if (resolutions[i].width == Screen.currentResolution.width && resolutions[i].height == Screen.currentResolution.height)
+            if (resolutions[i].width / resolutions[i].height == aspectRatio)
             {
-                currentResIdx = 1;
+
+                string option = resolutions[i].width + " x " + resolutions[i].height;
+                options.Add(option);
+                if (resolutions[i].width == Screen.currentResolution.width && resolutions[i].height == Screen.currentResolution.height)
+                {
+                    currentResIdx = 1;
+                }
             }
         }
         resolutionDropdown.AddOptions(options);
@@ -104,10 +119,10 @@ public class Menu : MonoBehaviour
         resolutionDropdown.RefreshShownValue();
     }
 
-    public void setResolution(int resIdx)
+    public void SetResolution(int resIdx)
     {
         Resolution resolution = resolutions[resIdx];
-        Screen.SetResolution(resolution.width, resolution.height,screenMode);
+        Screen.SetResolution(resolution.width, resolution.height, screenMode);
     }
 
     #endregion
@@ -140,7 +155,7 @@ public class Menu : MonoBehaviour
         Screen.fullScreenMode = screenMode;
     }
 
-    public FullScreenMode getScreenMode()
+    public FullScreenMode GetScreenMode()
     {
         return screenMode;
     }
