@@ -83,6 +83,8 @@ public class Player : MonoBehaviour
     public void Damage(int damage)
     {
         _health -= damage;
+        ScreenShake cameraShake = GameObject.FindGameObjectWithTag("MainCamera").gameObject.GetComponent<ScreenShake>();
+        StartCoroutine(cameraShake.Shake(0.2f, 0.2f));
 
         if (_health < 1)
         {
