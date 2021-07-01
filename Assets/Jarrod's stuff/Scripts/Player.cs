@@ -23,6 +23,9 @@ public class Player : MonoBehaviour
 
     private int _health = 3;
 
+    private float _xBorder = 8.2f;
+    private float _yBorder = 4.5f;
+
 
     // Start is called before the first frame update
     void Start()
@@ -53,7 +56,9 @@ public class Player : MonoBehaviour
         float horizontalInput = Input.GetAxis("Horizontal");
         float verticalInput = Input.GetAxis("Vertical");
 
+
         transform.Translate(_speed * Time.deltaTime * new Vector3(horizontalInput, verticalInput, 0));
+        transform.position = new Vector3(Mathf.Clamp(transform.position.x, -_xBorder, _xBorder), Mathf.Clamp(transform.position.y, -_yBorder, _yBorder), 0);
     }
 
     IEnumerator AutoFire()
@@ -83,7 +88,7 @@ public class Player : MonoBehaviour
     public void Damage(int damage)
     {
         _health -= damage;
-        ScreenShake cameraShake = GameObject.FindGameObjectWithTag("MainCamera").gameObject.GetComponent<ScreenShake>();
+        ScreenShake cameraShake = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<ScreenShake>();
         StartCoroutine(cameraShake.Shake(0.2f, 0.2f));
 
         if (_health < 1)
