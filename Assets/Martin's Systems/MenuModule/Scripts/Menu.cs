@@ -9,6 +9,7 @@ public class Menu : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        SetupAspectRatio();
         Gameobjectstarting();
         GetResolutions();
     }
@@ -77,8 +78,7 @@ public class Menu : MonoBehaviour
         int curASI =0 ;
         for (int i = 0; i < 3; i++)
         {
-            string option = aspectRatios[i].ToString();
-            options.Add(option);
+            options.Add(aspectRatios[i].ToString());
             if (aspectRatios[i] == aspectRatio)
             {
                 curASI = 1;
@@ -121,8 +121,7 @@ public class Menu : MonoBehaviour
 
     public void SetResolution(int resIdx)
     {
-        Resolution resolution = resolutions[resIdx];
-        Screen.SetResolution(resolution.width, resolution.height, screenMode);
+        Screen.SetResolution(resolutions[resIdx].width, resolutions[resIdx].height, screenMode);
     }
 
     #endregion
