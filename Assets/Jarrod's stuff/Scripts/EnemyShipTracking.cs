@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyShip : MonoBehaviour
+public class EnemyShipTracking : MonoBehaviour
 {
 
     [SerializeField]
-    private float _speed = 4f;
+    private float _speed = 5f;
     private GameObject _player;
 
     // Start is called before the first frame update
@@ -24,13 +24,16 @@ public class EnemyShip : MonoBehaviour
         }
         else
         {
-            if (_player.transform.position.x > transform.position.x + 0.15f)
+            if (_player)
             {
-                transform.Translate(Vector3.right * _speed * Time.deltaTime);
-            }
-            else if (_player.transform.position.x < transform.position.x - 0.15f)
-            {
-                transform.Translate(Vector3.left * _speed * Time.deltaTime);
+                if (_player.transform.position.x > transform.position.x + 0.15f)
+                {
+                    transform.Translate(Vector3.right * _speed * Time.deltaTime);
+                }
+                else if (_player.transform.position.x < transform.position.x - 0.15f)
+                {
+                    transform.Translate(Vector3.left * _speed * Time.deltaTime);
+                }
             }
         }
     }

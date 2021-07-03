@@ -422,6 +422,7 @@ MonoBehaviour:
   _prefabEnemy: {fileID: 1676132096197644534, guid: 15f04b47d511d4ca38f69192d06298f2, type: 3}
   _prefabVGroup: {fileID: 7733689730904933578, guid: f6b8c4bb405064b7aa42582ff5f8c7f1, type: 3}
   _prefabLineGroup: {fileID: 2073263544826500878, guid: 2363cf19f002b4099bcccd66faf968ad, type: 3}
-  _prefabEnemyShip: {fileID: 6445170269069053235, guid: 55e2564604d5c48d582b4faf54563219, type: 3}
+  _prefabEnemyShipTracking: {fileID: 6445170269069053235, guid: 55e2564604d5c48d582b4faf54563219, type: 3}
+  _prefabEnemyShipStatic: {fileID: 5371346347996507339, guid: bb6b6ee6075334bba895ab4b651d4544, type: 3}
   _enemyContainer: {fileID: 1914684320}
   _spawnRate: 3

@@ -11,7 +11,9 @@ public class SpawnManager : MonoBehaviour
     [SerializeField]
     private GameObject _prefabLineGroup;
     [SerializeField]
-    private GameObject _prefabEnemyShip;
+    private GameObject _prefabEnemyShipTracking;
+    [SerializeField]
+    private GameObject _prefabEnemyShipStatic;
 
     [SerializeField]
     private GameObject _enemyContainer;
@@ -23,18 +25,20 @@ public class SpawnManager : MonoBehaviour
     void Start()
     {
         
-        GameObject[] _enemyList = new GameObject[4];
+        GameObject[] _enemyList = new GameObject[5];
         _enemyList[0] = _prefabEnemy;
         _enemyList[1] = _prefabVGroup;
         _enemyList[2] = _prefabLineGroup;
-        _enemyList[3] = _prefabEnemyShip;
+        _enemyList[3] = _prefabEnemyShipTracking;
+        _enemyList[4] = _prefabEnemyShipStatic;
 
         //Weights must add up to 100
-        int[] _enemyWeightList = new int[4];
-        _enemyWeightList[0] = 70;
-        _enemyWeightList[1] = 10;
-        _enemyWeightList[2] = 10;
-        _enemyWeightList[3] = 10;
+        int[] _enemyWeightList = new int[5];
+        _enemyWeightList[0] = 50;
+        _enemyWeightList[1] = 1;
+        _enemyWeightList[2] = 1;
+        _enemyWeightList[3] = 1;
+        _enemyWeightList[4] = 47;
 
         StartCoroutine(RandomEnemy(_enemyList, _enemyWeightList));
     }
