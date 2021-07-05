@@ -23,8 +23,8 @@ public class Player : MonoBehaviour
 
     private int _health = 3;
 
-    private float _xBorder = 8.2f;
-    private float _yBorder = 4.5f;
+    private float _playerXBorder;
+    private float _playerYBorder;
 
 
     // Start is called before the first frame update
@@ -34,6 +34,10 @@ public class Player : MonoBehaviour
         playerState = PlayerColour.White;
         _spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
         StartCoroutine(AutoFire());
+
+        CameraViewSize cSize = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraViewSize>();
+        _playerXBorder = cSize.GetPlayerXBorder();
+        _playerYBorder = cSize.GetPlayerYBorder();
     }
 
 
@@ -56,9 +60,8 @@ public class Player : MonoBehaviour
         float horizontalInput = Input.GetAxis("Horizontal");
         float verticalInput = Input.GetAxis("Vertical");
 
-
         transform.Translate(_speed * Time.deltaTime * new Vector3(horizontalInput, verticalInput, 0));
-        transform.position = new Vector3(Mathf.Clamp(transform.position.x, -_xBorder, _xBorder), Mathf.Clamp(transform.position.y, -_yBorder, _yBorder), 0);
+        transform.position = new Vector3(Mathf.Clamp(transform.position.x, -_playerXBorder, _playerXBorder), Mathf.Clamp(transform.position.y, -_playerYBorder, _playerYBorder), 0);
     }
 
     IEnumerator AutoFire()

@@ -42,7 +42,7 @@ public class EnemyShipStatic : MonoBehaviour
 
     private void TrackPlayer ()
     {
-        Debug.Log("Tracking player");
+        //Debug.Log("Tracking player");
         //Vector3 target = _player.transform.position - transform.position;
         //Quaternion rotation = Quaternion.LookRotation(target, Vector3.up);
         //transform.rotation = new Quaternion(0, 0, rotation.z, rotation.w);
