@@ -13,7 +13,7 @@ public class CameraViewSize : MonoBehaviour
 
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         Camera cam = transform.GetComponent<Camera>();
         height = 2f * cam.orthographicSize;
