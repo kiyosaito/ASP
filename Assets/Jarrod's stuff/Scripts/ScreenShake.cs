@@ -5,14 +5,6 @@ using UnityEngine;
 public class ScreenShake : MonoBehaviour
 {
 
-    private void Start()
-    {
-        Debug.Log("Test camera");
-        Camera cam = FindObjectOfType<Camera>();
-        Debug.Log("Height: " + 2f * cam.orthographicSize);
-        Debug.Log("Width: " + 2f * cam.orthographicSize * cam.aspect);
-    }
-
     public IEnumerator Shake(float dur, float mag)
     {
         Vector3 pos = transform.position;

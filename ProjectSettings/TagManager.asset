@@ -6,6 +6,12 @@ TagManager:
   tags:
   - Enemy
   - Bullet
+  - BGNebula1
+  - BGNebula2
+  - BGStarsSmall1
+  - BGStarsSmall2
+  - BGStarsBig1
+  - BGStarsBig2
   layers:
   - Default
   - TransparentFX
@@ -40,6 +46,9 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Background
+    uniqueID: 2786778111
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0

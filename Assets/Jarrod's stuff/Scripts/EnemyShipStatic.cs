@@ -10,14 +10,11 @@ public class EnemyShipStatic : MonoBehaviour
     [SerializeField]
     private float _speed = 3f;
     private GameObject _player;
-    private TempVariables tp = null;
 
     // Start is called before the first frame update
     void Start()
     {
-        Debug.Log("Y Screen Border: " + tp.yScreenBorder);
-        _yMoveDistance = Random.Range(1, tp.yScreenBorder / 2);
-        Debug.Log("Y distance: " + _yMoveDistance);
+        _yMoveDistance = Random.Range(2f, GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraViewSize>().GetHeight() / 2);
         _initialYPos = transform.position.y;
         _player = GameObject.FindGameObjectWithTag("Player");
     }

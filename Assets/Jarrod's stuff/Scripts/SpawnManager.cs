@@ -27,7 +27,15 @@ public class SpawnManager : MonoBehaviour
 
     void Start()
     {
-        
+        CameraViewSize cSize = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraViewSize>();
+        height = cSize.GetHeight();
+        width = cSize.GetWidth();
+
+        Invoke(nameof(StartGenerating), 3);
+    }
+
+    private void StartGenerating()
+    {
         GameObject[] _enemyList = new GameObject[5];
         _enemyList[0] = _prefabEnemy;
         _enemyList[1] = _prefabVGroup;
@@ -44,10 +52,6 @@ public class SpawnManager : MonoBehaviour
         _enemyWeightList[4] = 47;
 
         StartCoroutine(RandomEnemy(_enemyList, _enemyWeightList));
-
-        CameraViewSize cSize = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraViewSize>();
-        height = cSize.GetHeight();
-        width = cSize.GetWidth();
     }
 
     private IEnumerator RandomEnemy(GameObject[] enemyList, int[] weightList)
@@ -75,8 +79,7 @@ public class SpawnManager : MonoBehaviour
 
     private void Spawn(GameObject enemy)
     {
-        GameObject newEnemy = Instantiate(enemy, new Vector3(Random.Range(-width / 2f + 1f, width / 2f - 1f), height / 2f + 1f), Quaternion.identity);
-        newEnemy.transform.parent = _enemyContainer.transform;
+        Instantiate(enemy, new Vector3(Random.Range(-width / 2f + 1f, width / 2f - 1f), height / 2f + 1f), Quaternion.identity, _enemyContainer.transform);
     }
 
     private void Spawn2(GameObject enemy, float pos, float delayTime)

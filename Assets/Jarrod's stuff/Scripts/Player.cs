@@ -26,6 +26,9 @@ public class Player : MonoBehaviour
     private float _playerXBorder;
     private float _playerYBorder;
 
+    [SerializeField]
+    private GameObject _bulletContainer;
+
 
     // Start is called before the first frame update
     void Start()
@@ -70,7 +73,7 @@ public class Player : MonoBehaviour
         {
             yield return new WaitForSeconds(_fireRate);
 
-            Instantiate(_prefabBullet, new Vector3(transform.position.x, transform.position.y + 0.5f, 0), Quaternion.identity);
+            Instantiate(_prefabBullet, new Vector3(transform.position.x, transform.position.y + 0.5f, 0), Quaternion.identity, _bulletContainer.transform);
         }
     }
 
