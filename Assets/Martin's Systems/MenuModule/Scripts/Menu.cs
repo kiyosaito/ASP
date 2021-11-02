@@ -76,7 +76,7 @@ public class Menu : MonoBehaviour
         aspectRatios[2] = 16 / 10;
         List<string> options = new List<string>();
         int curASI =0 ;
-        for (int i = 0; i < 3; i++)
+        for (int[] i in aspectRatios)
         {
             options.Add(aspectRatios[i].ToString());
             if (aspectRatios[i] == aspectRatio)
@@ -118,6 +118,28 @@ public class Menu : MonoBehaviour
         resolutionDropdown.value = currentResIdx;
         resolutionDropdown.RefreshShownValue();
     }
+
+    /*
+    private void GetResolutions()
+    {
+        resolutions = Screen.resolutions;
+        resolutionDropdown.ClearOptions();
+        List<string> options = new List<string>();
+        int currentResIdx = 0;
+        for (int i = 0; i < resolutions.Length; i++)
+        {
+            string option = resolutions[i].width + " x " + resolutions[i].height;
+            options.Add(option);
+            if (resolutions[i].width == Screen.currentResolution.width && resolutions[i].height == Screen.currentResolution.height)
+            {
+                currentResIdx = 1;
+            }
+        }
+        resolutionDropdown.AddOptions(options);
+        resolutionDropdown.value = currentResIdx;
+        resolutionDropdown.RefreshShownValue();
+    }
+    */
 
     public void SetResolution(int resIdx)
     {
