@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Audio;
 
 
 public class Menu : MonoBehaviour
@@ -74,7 +75,6 @@ public class Menu : MonoBehaviour
     {
         
         aspectRatio = (float)(Mathf.Round(((float)Screen.width) / ((float)Screen.height) * 100f) * 0.01f);
-        Debug.Log(aspectRatio);
 
         aspectRatioDropdown.ClearOptions();
         aspectRatios[0] = (float)(Mathf.Round(((float)4) / ((float)3)*100f)*0.01f);
@@ -90,11 +90,6 @@ public class Menu : MonoBehaviour
         int curASI =0 ;
         for (int i=0;i<aspectRatios.Length;i++)
         {
-            print(aspectRatios[i]);
-            if (aspectRatios[i] == aspectRatio)
-            {
-                print("true");
-            }
             options.Add(aspectRatiosString[i]);
             if (aspectRatios[i] == aspectRatio)
             {
@@ -126,13 +121,8 @@ public class Menu : MonoBehaviour
         int currentResIdx = 0;
         for (int i = 0; i < resolutions.Length; i++)
         {
-            print(aspectRatio);
-            print(resolutions[i].width + " x " + resolutions[i].height);
-            print((float)(Mathf.Round(((float)resolutions[i].width) / ((float)resolutions[i].height) * 100f) * 0.01f));
-            print((float)(Mathf.Round(((float)resolutions[i].width) / ((float)resolutions[i].height) * 100f) * 0.01f) == aspectRatio);
             if ((float)(Mathf.Round(((float)resolutions[i].width) / ((float)resolutions[i].height) * 100f) * 0.01f) == aspectRatio)
             {
-                print("aspect ratio matched");
                 string option = resolutions[i].width + " x " + resolutions[i].height;
                 options.Add(option);
                 if (resolutions[i].width == Screen.currentResolution.width && resolutions[i].height == Screen.currentResolution.height)
@@ -140,11 +130,6 @@ public class Menu : MonoBehaviour
                     currentResIdx = 1;
                 }
             }
-            else
-            {
-                print("no match");
-            }
-            
         }
         resolutionDropdown.AddOptions(options);
         resolutionDropdown.value = currentResIdx;
@@ -196,8 +181,27 @@ public class Menu : MonoBehaviour
     #endregion
 
     #region Audio
+    [Header("Audio")]
+    public AudioMixer audioMixer;
+    public void SetMainVolume(float input)
+    {
+        audioMixer.SetFloat("MainVol", input);
+    }
 
+    public void SetSFXVolume(float input)
+    {
+        audioMixer.SetFloat("SFXVol", input);
+    }
 
+    public void SetMusicVolume(float input)
+    {
+        audioMixer.SetFloat("MusicVol", input);
+    }
+
+    public void SetDialogueVolume(float input)
+    {
+        audioMixer.SetFloat("DialogueVol", input);
+    }
 
     #endregion
 
