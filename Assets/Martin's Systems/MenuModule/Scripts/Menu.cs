@@ -185,22 +185,22 @@ public class Menu : MonoBehaviour
     public AudioMixer audioMixer;
     public void SetMainVolume(float input)
     {
-        audioMixer.SetFloat("MainVol", input);
+        audioMixer.SetFloat("MainVol", Mathf.Log10(input)*20);
     }
 
     public void SetSFXVolume(float input)
     {
-        audioMixer.SetFloat("SFXVol", input);
+        audioMixer.SetFloat("SFXVol", Mathf.Log10(input) * 20);
     }
 
     public void SetMusicVolume(float input)
     {
-        audioMixer.SetFloat("MusicVol", input);
+        audioMixer.SetFloat("MusicVol", Mathf.Log10(input) * 20);
     }
 
     public void SetDialogueVolume(float input)
     {
-        audioMixer.SetFloat("DialogueVol", input);
+        audioMixer.SetFloat("DialogueVol", Mathf.Log10(input) * 20);
     }
 
     #endregion
